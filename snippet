@@ -1,0 +1,26 @@
+#!/bin/bash
+# Usage:
+#
+# Given that there are files named 'index' in subdirectories of the current directory,
+# return the path to the latest-modified index file (including its directory name) containing
+# the strings "success" and "full".  If no such file exists, return an empty string.
+#
+masha(){
+for f in `ls -t */index`;
+do
+	if [ "`grep success $f`" ];
+	then
+		echo $f
+		break
+	fi
+done
+}
+
+# Example of how to use it:
+if [ "$(masha)" ];   # find a successful, full index?
+then
+	echo $(masha)    # yes
+else
+	echo NO          # no
+fi
+
